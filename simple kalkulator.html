@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            flex-direction: column; /* Postavitev elementov v stolpec */
+        }
+        .kalkulator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 20px; /* Dodajanje razmika pod kalkulatorjem */
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: right;
+        }
+        button {
+            width: 70px;
+            height: 70px;
+            margin: 5px;
+            font-size: 20px;
+            border: none;
+            background-color: #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #bbb;
+        }
+        .vrsta {
+            display: flex;
+            justify-content: space-between;
+        }
+        .enako {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .enako:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kalkulator">
+        <input type="text" id="zaslon" disabled>
+        <div class="vrsta">
+            <button onclick="pocistiZaslon()">C</button>
+            <button onclick="izbrisiZadnje()">DEL</button>
+            <button onclick="dodajNaZaslon('/')">/</button>
+        </div>
+        <div class="vrsta">
+            <button onclick="dodajNaZaslon('7')">7</button>
+            <button onclick="dodajNaZaslon('8')">8</button>
+            <button onclick="dodajNaZaslon('9')">9</button>
+            <button onclick="dodajNaZaslon('*')">*</button>
+        </div>
+        <div class="vrsta">
+            <button onclick="dodajNaZaslon('4')">4</button>
+            <button onclick="dodajNaZaslon('5')">5</button>
+            <button onclick="dodajNaZaslon('6')">6</button>
+            <button onclick="dodajNaZaslon('-')">-</button>
+        </div>
+        <div class="vrsta">
+            <button onclick="dodajNaZaslon('1')">1</button>
+            <button onclick="dodajNaZaslon('2')">2</button>
+            <button onclick="dodajNaZaslon('3')">3</button>
+            <button onclick="dodajNaZaslon('+')">+</button>
+        </div>
+        <div class="vrsta">
+            <button onclick="dodajNaZaslon('0')">0</button>
+            <button onclick="dodajNaZaslon('.')">.</button>
+            <button class="enako" onclick="izracunaj()">=</button>
+        </div>
+    </div>
+
+    <p style="font-size: 20px; font-weight: bold;">vidaliusss</p>
+
+    <script>
+        function dodajNaZaslon(vrednost) {
+            document.getElementById("zaslon").value += vrednost;
+        }
+
+        function pocistiZaslon() {
+            document.getElementById("zaslon").value = '';
+        }
+
+        function izbrisiZadnje() {
+            let zaslon = document.getElementById("zaslon");
+            zaslon.value = zaslon.value.slice(0, -1);
+        }
+
+        function izracunaj() {
+            let zaslon = document.getElementById("zaslon").value;
+            try {
+                document.getElementById("zaslon").value = eval(zaslon);
+            } catch (e) {
+                document.getElementById("zaslon").value = "Napaka";
+            }
+        }
+    </script>
+
+</body>
+</html>
